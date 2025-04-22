@@ -23,17 +23,30 @@
       border-top: 1px solid #ccc;
       border-bottom: 1px solid #ccc;
     }
+    .slider-wrapper {
+      position: relative;
+      width: 100%;
+    }
     .slider-inner {
       position: relative;
       width: 100%;
-      overflow: hidden;
+      transition: height 0.4s ease;
     }
     .slide {
-      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      z-index: 0;
+      pointer-events: none;
     }
     .slide.active {
-      display: block;
+      opacity: 1;
+      z-index: 1;
+      pointer-events: auto;
+      position: relative;
     }
     .image-container {
       position: relative;
@@ -78,8 +91,8 @@
     .magnify-icon {
       position: absolute;
       top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+      left: 50%;
+      transform: translate(-50%, -50%);
       font-size: 1.3em;
       color: white;
       background: rgba(0, 0, 0, 0.6);
@@ -95,7 +108,7 @@
     }
     .caption {
       text-align: center;
-      margin-top: 10px;
+      margin-top: 15px;
       color: #333;
       padding: 0 15px;
     }
@@ -103,7 +116,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-top: 15px;
+      margin-top: 30px;
     }
     .bottom-nav-button {
       background-color: #1B75BC;
@@ -155,99 +168,89 @@
 </head>
 <body>
 
-
 <div style="max-width: 800px; margin: 0 auto;">
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam efficitur diam sit amet diam scelerisque tempor. Maecenas congue elit ipsum, a scelerisque elit dictum vel. Integer accumsan malesuada elit nec malesuada. Cras sem felis, eleifend et ligula at, fringilla pharetra enim. Praesent sit amet elit non ligula dapibus mollis sit amet non erat. Integer vulputate nibh eu consectetur tincidunt. Integer suscipit rutrum odio eu auctor. Aenean luctus risus ut faucibus ultrices. Pellentesque eu quam ut velit efficitur tincidunt. Duis mattis sodales ultrices. Sed mollis sapien nec felis porttitor tempor. Integer auctor malesuada leo id sodales.</p>
+<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nec tempus elit. Donec consequat non ex auctor sodales. Maecenas vel malesuada odio, sit amet tincidunt urna. Sed a dignissim dui. Sed placerat, diam eget finibus egestas, magna felis porta elit, vitae convallis arcu ex non risus. Nullam felis sem, mattis eu hendrerit vitae, mollis ac diam. Proin at diam quam. Nam a convallis nulla. Mauris orci urna, tristique sed nunc non, facilisis euismod quam. Cras sagittis, augue in auctor porttitor, sapien libero convallis ante, at pretium diam eros sit amet enim. Donec egestas sapien metus, eu suscipit nisi varius eu. </p>
 
 <div class="slider-container">
-  <div class="slider-inner">
+  <div class="slider-wrapper">
+    <div class="slider-inner">
 
-    <!-- Slide Template (repeat as needed) -->
-    <div class="slide active">
-      <div class="image-container">
-        <img class="slider-image" src="img/pic1.jpg" alt="Slide 1">
-        <i class="fas fa-search magnify-icon" onclick="openLightbox('img/pic1.jpg')"></i>
-        <div class="hover-zone left" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></div>
-        <div class="hover-zone right" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></div>
+      <div class="slide active">
+        <div class="image-container">
+          <img class="slider-image" src="img/pic1.jpg" alt="Slide 1">
+          <i class="fas fa-search magnify-icon" onclick="openLightbox('img/pic1.jpg')"></i>
+          <div class="hover-zone left" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></div>
+          <div class="hover-zone right" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></div>
+        </div>
+        <div class="caption">
+          <h3>Heading for Slide 1</h3>
+          <p>Caption text for slide 1 goes here. It may be longer and should adjust properly.</p>
+        </div>
       </div>
-      <div class="caption">
-        <h3>Heading for Slide 1</h3>
-        <p>Caption text for slide 1 goes here.</p>
+
+      <div class="slide">
+        <div class="image-container">
+          <img class="slider-image" src="img/pic2.jpg" alt="Slide 2">
+          <i class="fas fa-search magnify-icon" onclick="openLightbox('img/pic2.jpg')"></i>
+          <div class="hover-zone left" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></div>
+          <div class="hover-zone right" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></div>
+        </div>
+        <div class="caption">
+          <h3>Heading for Slide 2</h3>
+          <p>Short caption for slide 2.</p>
+        </div>
       </div>
+
+      <div class="slide">
+        <div class="image-container">
+          <img class="slider-image" src="img/pic3.jpg" alt="Slide 3">
+          <i class="fas fa-search magnify-icon" onclick="openLightbox('img/pic3.jpg')"></i>
+          <div class="hover-zone left" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></div>
+          <div class="hover-zone right" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></div>
+        </div>
+        <div class="caption">
+          <h3>Heading for Slide 3</h3>
+          <p>Another caption that might be taller than the others. Let's see how it adjusts.</p>
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="image-container">
+          <img class="slider-image" src="img/pic4.jpg" alt="Slide 4">
+          <i class="fas fa-search magnify-icon" onclick="openLightbox('img/pic4.jpg')"></i>
+          <div class="hover-zone left" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></div>
+          <div class="hover-zone right" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></div>
+        </div>
+        <div class="caption">
+          <h3>Heading for Slide 4</h3>
+          <p>Last slide caption.</p>
+        </div>
+      </div>
+
     </div>
-
-    <div class="slide">
-      <div class="image-container">
-        <img class="slider-image" src="img/pic2.jpg" alt="Slide 2">
-        <i class="fas fa-search magnify-icon" onclick="openLightbox('img/pic2.jpg')"></i>
-        <div class="hover-zone left" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></div>
-        <div class="hover-zone right" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></div>
-      </div>
-      <div class="caption">
-        <h3>Heading for Slide 2</h3>
-        <p>Caption text for slide 2 goes here.</p>
-      </div>
-    </div>
-
-    <div class="slide">
-      <div class="image-container">
-        <img class="slider-image" src="img/pic3.jpg" alt="Slide 3">
-        <i class="fas fa-search magnify-icon" onclick="openLightbox('img/pic3.jpg')"></i>
-        <div class="hover-zone left" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></div>
-        <div class="hover-zone right" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></div>
-      </div>
-      <div class="caption">
-        <h3>Heading for Slide 3</h3>
-        <p>Caption text for slide 3 goes here.</p>
-      </div>
-    </div>
-
-    <div class="slide">
-      <div class="image-container">
-        <img class="slider-image" src="img/pic4.jpg" alt="Slide 4">
-        <i class="fas fa-search magnify-icon" onclick="openLightbox('img/pic4.jpg')"></i>
-        <div class="hover-zone left" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></div>
-        <div class="hover-zone right" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></div>
-      </div>
-      <div class="caption">
-        <h3>Heading for Slide 4</h3>
-        <p>Caption text for slide 4 goes here.</p>
-      </div>
-    </div>
-
   </div>
 
   <div class="bottom-navigation">
     <button id="bottomPrevBtn" class="bottom-nav-button"><i class="fa-solid fa-chevron-left"></i></button>
-    <span id="bottomCounter" class="bottom-counter"> <span class="current">1</span> / <span class="total">4</span> </span>
+    <span id="bottomCounter" class="bottom-counter"><span class="current">1</span> / <span class="total">4</span></span>
     <button id="bottomNextBtn" class="bottom-nav-button"><i class="fa-solid fa-chevron-right"></i></button>
   </div>
 </div>
 
-<!-- Lightbox -->
+<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nec tempus elit. Donec consequat non ex auctor sodales. Maecenas vel malesuada odio, sit amet tincidunt urna. Sed a dignissim dui. Sed placerat, diam eget finibus egestas, magna felis porta elit, vitae convallis arcu ex non risus. Nullam felis sem, mattis eu hendrerit vitae, mollis ac diam. Proin at diam quam. Nam a convallis nulla. Mauris orci urna, tristique sed nunc non, facilisis euismod quam. Cras sagittis, augue in auctor porttitor, sapien libero convallis ante, at pretium diam eros sit amet enim. Donec egestas sapien metus, eu suscipit nisi varius eu. </p>
+
 <div id="lightbox" class="lightbox" onclick="handleLightboxClick(event)">
   <span class="lightbox-close" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i></span>
   <img id="lightbox-img" src="" alt="Full View">
 </div>
-
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam efficitur diam sit amet diam scelerisque tempor. Maecenas congue elit ipsum, a scelerisque elit dictum vel. Integer accumsan malesuada elit nec malesuada. Cras sem felis, eleifend et ligula at, fringilla pharetra enim. Praesent sit amet elit non ligula dapibus mollis sit amet non erat. Integer vulputate nibh eu consectetur tincidunt. Integer suscipit rutrum odio eu auctor. Aenean luctus risus ut faucibus ultrices. Pellentesque eu quam ut velit efficitur tincidunt. Duis mattis sodales ultrices. Sed mollis sapien nec felis porttitor tempor. Integer auctor malesuada leo id sodales.</p>
-
-</div>
-
-
-
-
-
-
-
-
 
 <script>
   const slides = document.querySelectorAll('.slide');
   const bottomCounter = document.getElementById('bottomCounter');
   const bottomPrevBtn = document.getElementById('bottomPrevBtn');
   const bottomNextBtn = document.getElementById('bottomNextBtn');
+  const sliderInner = document.querySelector('.slider-inner');
 
   let currentIndex = 0;
   const totalSlides = slides.length;
@@ -256,6 +259,11 @@
     slides.forEach((slide, i) => {
       slide.classList.toggle('active', i === currentIndex);
     });
+
+    const activeSlide = slides[currentIndex];
+    const newHeight = activeSlide.offsetHeight;
+    sliderInner.style.height = `${newHeight}px`;
+
     bottomCounter.querySelector('.current').textContent = currentIndex + 1;
     bottomCounter.querySelector('.total').textContent = totalSlides;
   }
@@ -293,7 +301,8 @@
     if (e.key === 'Escape') closeLightbox();
   });
 
-  updateSlider();
+  window.addEventListener('load', updateSlider);
+  window.addEventListener('resize', updateSlider);
 </script>
 
 </body>
